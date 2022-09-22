@@ -1,5 +1,5 @@
-import { useSession } from "next-auth/react";
-import { Navbar, Dropdown, Avatar } from "flowbite-react";
+import { useSession, signIn, signOut } from "next-auth/react";
+import { Navbar, Dropdown, Avatar, Button } from "flowbite-react";
 import Link from "next/link";
 
 const Header = () => {
@@ -27,21 +27,29 @@ const Header = () => {
 				<input type="text" id="search-navbar" className="block p-2 pl-10 w-full text-gray-900 bg-gray-50 rounded-lg border border-gray-300 sm:text-sm focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" placeholder="Search..." />
 			</div>
 			<div className="flex md:order-2">
-				<Dropdown arrowIcon={false} inline={true}
-					label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true}/>}
-				>
-					<Dropdown.Header>
-						<span className="block text-sm">Bonnie Green</span>
-						<span className="block truncate text-sm font-medium">name@flowbite.com</span>
-					</Dropdown.Header>
-					<Dropdown.Item>Dashboard</Dropdown.Item>
-					<Dropdown.Item>Settings</Dropdown.Item>
-					<Dropdown.Item>Earnings</Dropdown.Item>
-					<Dropdown.Divider />
-					<Dropdown.Item>Sign out</Dropdown.Item>
-				</Dropdown>
-				<Navbar.Toggle />
+				{status === "authenticated"
+					? (
+						<Dropdown arrowIcon={false} inline={true}
+							label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true}/>}
+						>
+							<Dropdown.Header>
+								<span className="block text-sm">Bonnie Green</span>
+								<span className="block truncate text-sm font-medium">name@flowbite.com</span>
+							</Dropdown.Header>
+							<Dropdown.Divider />
+							<Dropdown.Item onClick={() => signOut()}>Sign out</Dropdown.Item>
+						</Dropdown>
+					)
+					: (
+						<Link href="/signIn">
+							<Button onClick={() => signIn()}>
+								Sign in
+							</Button>
+						</Link>
+					)
+				}
 			</div>
+			<Navbar.Toggle />
 		</Navbar>
     );
 }
