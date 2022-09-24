@@ -7,11 +7,13 @@ const Header = () => {
 
     return(
         <Navbar fluid={true}>
-            <Navbar.Brand href="https://flowbite.com/">
-                <span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-					Flowbite
-                </span>
-            </Navbar.Brand>
+			<Link href="/">
+				<Navbar.Brand href="https://flowbite.com/">
+					<span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+						Manga Next
+					</span>
+				</Navbar.Brand>
+			</Link>
 			<Navbar.Collapse>
 				<Link href="/"><Navbar.Link href="/">Home</Navbar.Link></Link>
 				<Navbar.Link href="/navbars">About</Navbar.Link>
@@ -30,22 +32,21 @@ const Header = () => {
 				{status === "authenticated"
 					? (
 						<Dropdown arrowIcon={false} inline={true}
-							label={<Avatar alt="User settings" img="https://flowbite.com/docs/images/people/profile-picture-5.jpg" rounded={true}/>}
+							label={<Avatar alt="User settings" img={session?.user?.image || undefined} rounded={true}/>}
 						>
 							<Dropdown.Header>
-								<span className="block text-sm">Bonnie Green</span>
-								<span className="block truncate text-sm font-medium">name@flowbite.com</span>
+								<span className="block text-sm">{session?.user?.name || "visitor"}</span>
+								<span className="block truncate text-sm font-medium">{session?.user?.email}</span>
 							</Dropdown.Header>
+							<Dropdown.Item>Settings</Dropdown.Item>
 							<Dropdown.Divider />
 							<Dropdown.Item onClick={() => signOut()}>Sign out</Dropdown.Item>
 						</Dropdown>
 					)
 					: (
-						<Link href="/signIn">
-							<Button onClick={() => signIn()}>
-								Sign in
-							</Button>
-						</Link>
+						<Button onClick={() => signIn()}>
+							Sign in
+						</Button>
 					)
 				}
 			</div>
