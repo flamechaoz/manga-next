@@ -8,14 +8,12 @@ const Header = () => {
     return(
         <Navbar fluid={true}>
 			<Link href="/">
-				<Navbar.Brand href="https://flowbite.com/">
-					<span className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
-						Manga Next
-					</span>
-				</Navbar.Brand>
+				<a className="self-center whitespace-nowrap text-xl font-semibold dark:text-white">
+					Manga Next
+				</a>
 			</Link>
 			<Navbar.Collapse>
-				<Link href="/"><Navbar.Link href="/">Home</Navbar.Link></Link>
+				<Link href="/"><a className="block py-2 pr-4 pl-3 text-gray-700 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-gray-400 md:dark:hover:text-white dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Home</a></Link>
 				<Navbar.Link href="/navbars">About</Navbar.Link>
 				<Navbar.Link href="/navbars">Services</Navbar.Link>
 				<Navbar.Link href="/navbars">Pricing</Navbar.Link>
@@ -38,7 +36,7 @@ const Header = () => {
 								<span className="block text-sm">{session?.user?.name || "visitor"}</span>
 								<span className="block truncate text-sm font-medium">{session?.user?.email}</span>
 							</Dropdown.Header>
-							<Dropdown.Item>Settings</Dropdown.Item>
+							<Dropdown.Item><Link href={"/profile/settings"}><a>Settings</a></Link></Dropdown.Item>
 							<Dropdown.Divider />
 							<Dropdown.Item onClick={() => signOut()}>Sign out</Dropdown.Item>
 						</Dropdown>
