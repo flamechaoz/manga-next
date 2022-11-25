@@ -5,7 +5,6 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "postinstall": "prisma generate && prisma migrate deploy",
     "lint": "next lint",
     "start": "next start"
   },
@@ -16,8 +15,11 @@
     "@trpc/next": "^9.27.2",
     "@trpc/react": "^9.27.2",
     "@trpc/server": "^9.27.2",
+    "@types/moment-timezone": "^0.5.30",
     "flowbite": "^1.5.3",
     "flowbite-react": "^0.1.11",
+    "moment": "^2.29.4",
+    "moment-timezone": "^0.5.39",
     "next": "12.2.5",
     "next-auth": "^4.10.3",
     "nodemailer": "^6.7.8",
